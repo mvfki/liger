@@ -97,6 +97,7 @@ Suggests:
     SingleCellExperiment,
     SummarizedExperiment,
     testthat
+SystemRequirements: C++20
 Remotes:
     chris-mcginnis-ucsf/DoubletFinder
 

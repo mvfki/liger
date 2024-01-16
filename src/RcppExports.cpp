@@ -228,69 +228,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_rank_matrix_dgc
-std::vector<std::list<float> > cpp_rank_matrix_dgc(arma::vec& x, const arma::vec& p, int nrow, int ncol);
-RcppExport SEXP _rliger2_cpp_rank_matrix_dgc(SEXP xSEXP, SEXP pSEXP, SEXP nrowSEXP, SEXP ncolSEXP) {
+// cpp_wilcoxauc
+Rcpp::List cpp_wilcoxauc(const arma::sp_mat& X, std::vector<std::string> y);
+RcppExport SEXP _rliger2_cpp_wilcoxauc(SEXP XSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type p(pSEXP);
-    Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
-    Rcpp::traits::input_parameter< int >::type ncol(ncolSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_rank_matrix_dgc(x, p, nrow, ncol));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rowAggregateSum_sparse
-arma::mat rowAggregateSum_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
-RcppExport SEXP _rliger2_rowAggregateSum_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
-    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rowAggregateSum_sparse(X, groups, ngroups));
-    return rcpp_result_gen;
-END_RCPP
-}
-// colAggregateSum_sparse
-arma::mat colAggregateSum_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
-RcppExport SEXP _rliger2_colAggregateSum_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
-    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
-    rcpp_result_gen = Rcpp::wrap(colAggregateSum_sparse(X, groups, ngroups));
-    return rcpp_result_gen;
-END_RCPP
-}
-// colNNZAggr_sparse
-arma::mat colNNZAggr_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
-RcppExport SEXP _rliger2_colNNZAggr_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
-    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
-    rcpp_result_gen = Rcpp::wrap(colNNZAggr_sparse(X, groups, ngroups));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rowNNZAggr_sparse
-arma::mat rowNNZAggr_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
-RcppExport SEXP _rliger2_rowNNZAggr_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
-    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rowNNZAggr_sparse(X, groups, ngroups));
+    Rcpp::traits::input_parameter< const arma::sp_mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_wilcoxauc(X, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -313,11 +259,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rliger2_ComputeSNN", (DL_FUNC) &_rliger2_ComputeSNN, 2},
     {"_rliger2_WriteEdgeFile", (DL_FUNC) &_rliger2_WriteEdgeFile, 3},
     {"_rliger2_DirectSNNToFile", (DL_FUNC) &_rliger2_DirectSNNToFile, 4},
-    {"_rliger2_cpp_rank_matrix_dgc", (DL_FUNC) &_rliger2_cpp_rank_matrix_dgc, 4},
-    {"_rliger2_rowAggregateSum_sparse", (DL_FUNC) &_rliger2_rowAggregateSum_sparse, 3},
-    {"_rliger2_colAggregateSum_sparse", (DL_FUNC) &_rliger2_colAggregateSum_sparse, 3},
-    {"_rliger2_colNNZAggr_sparse", (DL_FUNC) &_rliger2_colNNZAggr_sparse, 3},
-    {"_rliger2_rowNNZAggr_sparse", (DL_FUNC) &_rliger2_rowNNZAggr_sparse, 3},
+    {"_rliger2_cpp_wilcoxauc", (DL_FUNC) &_rliger2_cpp_wilcoxauc, 2},
     {NULL, NULL, 0}
 };
 

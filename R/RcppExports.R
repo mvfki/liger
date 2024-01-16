@@ -83,23 +83,7 @@ DirectSNNToFile <- function(nn_ranked, prune, display_progress, filename) {
     .Call(`_rliger2_DirectSNNToFile`, nn_ranked, prune, display_progress, filename)
 }
 
-cpp_rank_matrix_dgc <- function(x, p, nrow, ncol) {
-    .Call(`_rliger2_cpp_rank_matrix_dgc`, x, p, nrow, ncol)
-}
-
-rowAggregateSum_sparse <- function(X, groups, ngroups) {
-    .Call(`_rliger2_rowAggregateSum_sparse`, X, groups, ngroups)
-}
-
-colAggregateSum_sparse <- function(X, groups, ngroups) {
-    .Call(`_rliger2_colAggregateSum_sparse`, X, groups, ngroups)
-}
-
-colNNZAggr_sparse <- function(X, groups, ngroups) {
-    .Call(`_rliger2_colNNZAggr_sparse`, X, groups, ngroups)
-}
-
-rowNNZAggr_sparse <- function(X, groups, ngroups) {
-    .Call(`_rliger2_rowNNZAggr_sparse`, X, groups, ngroups)
+cpp_wilcoxauc <- function(X, y) {
+    .Call(`_rliger2_cpp_wilcoxauc`, X, y)
 }
 
