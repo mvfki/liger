@@ -228,15 +228,59 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_wilcoxauc
-Rcpp::List cpp_wilcoxauc(const arma::sp_mat& X, std::vector<std::string> y);
-RcppExport SEXP _rliger2_cpp_wilcoxauc(SEXP XSEXP, SEXP ySEXP) {
+// wrap_dwilcox
+double wrap_dwilcox(double x, double m, double n, int give_log);
+RcppExport SEXP _rliger2_wrap_dwilcox(SEXP xSEXP, SEXP mSEXP, SEXP nSEXP, SEXP give_logSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::sp_mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< std::vector<std::string> >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_wilcoxauc(X, y));
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type m(mSEXP);
+    Rcpp::traits::input_parameter< double >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type give_log(give_logSEXP);
+    rcpp_result_gen = Rcpp::wrap(wrap_dwilcox(x, m, n, give_log));
+    return rcpp_result_gen;
+END_RCPP
+}
+// wrap_pwilcox
+double wrap_pwilcox(double q, double m, double n, int lower_tail, int log_p);
+RcppExport SEXP _rliger2_wrap_pwilcox(SEXP qSEXP, SEXP mSEXP, SEXP nSEXP, SEXP lower_tailSEXP, SEXP log_pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type q(qSEXP);
+    Rcpp::traits::input_parameter< double >::type m(mSEXP);
+    Rcpp::traits::input_parameter< double >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type lower_tail(lower_tailSEXP);
+    Rcpp::traits::input_parameter< int >::type log_p(log_pSEXP);
+    rcpp_result_gen = Rcpp::wrap(wrap_pwilcox(q, m, n, lower_tail, log_p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// wrap_qwilcox
+double wrap_qwilcox(double x, double m, double n, int lower_tail, int log_p);
+RcppExport SEXP _rliger2_wrap_qwilcox(SEXP xSEXP, SEXP mSEXP, SEXP nSEXP, SEXP lower_tailSEXP, SEXP log_pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type m(mSEXP);
+    Rcpp::traits::input_parameter< double >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type lower_tail(lower_tailSEXP);
+    Rcpp::traits::input_parameter< int >::type log_p(log_pSEXP);
+    rcpp_result_gen = Rcpp::wrap(wrap_qwilcox(x, m, n, lower_tail, log_p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// wrap_rwilcox
+double wrap_rwilcox(double m, double n);
+RcppExport SEXP _rliger2_wrap_rwilcox(SEXP mSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type m(mSEXP);
+    Rcpp::traits::input_parameter< double >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(wrap_rwilcox(m, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -259,7 +303,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rliger2_ComputeSNN", (DL_FUNC) &_rliger2_ComputeSNN, 2},
     {"_rliger2_WriteEdgeFile", (DL_FUNC) &_rliger2_WriteEdgeFile, 3},
     {"_rliger2_DirectSNNToFile", (DL_FUNC) &_rliger2_DirectSNNToFile, 4},
-    {"_rliger2_cpp_wilcoxauc", (DL_FUNC) &_rliger2_cpp_wilcoxauc, 2},
+    {"_rliger2_wrap_dwilcox", (DL_FUNC) &_rliger2_wrap_dwilcox, 4},
+    {"_rliger2_wrap_pwilcox", (DL_FUNC) &_rliger2_wrap_pwilcox, 5},
+    {"_rliger2_wrap_qwilcox", (DL_FUNC) &_rliger2_wrap_qwilcox, 5},
+    {"_rliger2_wrap_rwilcox", (DL_FUNC) &_rliger2_wrap_rwilcox, 2},
     {NULL, NULL, 0}
 };
 

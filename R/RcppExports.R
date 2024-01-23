@@ -83,7 +83,19 @@ DirectSNNToFile <- function(nn_ranked, prune, display_progress, filename) {
     .Call(`_rliger2_DirectSNNToFile`, nn_ranked, prune, display_progress, filename)
 }
 
-cpp_wilcoxauc <- function(X, y) {
-    .Call(`_rliger2_cpp_wilcoxauc`, X, y)
+wrap_dwilcox <- function(x, m, n, give_log) {
+    .Call(`_rliger2_wrap_dwilcox`, x, m, n, give_log)
+}
+
+wrap_pwilcox <- function(q, m, n, lower_tail, log_p) {
+    .Call(`_rliger2_wrap_pwilcox`, q, m, n, lower_tail, log_p)
+}
+
+wrap_qwilcox <- function(x, m, n, lower_tail, log_p) {
+    .Call(`_rliger2_wrap_qwilcox`, x, m, n, lower_tail, log_p)
+}
+
+wrap_rwilcox <- function(m, n) {
+    .Call(`_rliger2_wrap_rwilcox`, m, n)
 }
 
