@@ -94,13 +94,13 @@ runWilcoxon <- function(
                                        seq(nfeatures / 100000))),
                 function(index) {
                     fm <- log1p(1e10*featureMatrix[index, ])
-                    wilcoxauc(fm, clusters)
+                    newwilcox.test(fm, clusters)
                 }))
         } else {
             # TODO: If we add log-transformation to normalization method in the
             # future, remember to have conditions here.
             fm <- log1p(1e10*featureMatrix)
-            results <- wilcoxauc(fm, clusters)
+            results <- newwilcox.test(fm, clusters)
         }
     } else {
         # compare between datasets within each cluster
@@ -114,7 +114,7 @@ runWilcoxon <- function(
                 return()
             } else {
                 subMatrix <- log1p(1e10*featureMatrix[, clusterIdx])
-                return(wilcoxauc(subMatrix, subLabel))
+                return(newwilcox.test(subMatrix, subLabel))
             }
         }))
     }
@@ -251,7 +251,7 @@ getFactorMarkers <- function(
                           normDataList[[2]][vargene, labels[[2]] == i])
         cellLabel <- rep(c(dataset1, dataset2),
                          c(sum(labels[[1]] == i), sum(labels[[2]] == i)))
-        wilcoxResult <- wilcoxauc(log1p(1e10*normData), cellLabel)
+        wilcoxResult <- newwilcox.test(log1p(1e10*normData), cellLabel)
 
         log2fc <- wilcoxResult[wilcoxResult$group == dataset1, ]$logFC
         names(log2fc) <- wilcoxResult[wilcoxResult$group == dataset1, ]$feature

@@ -99,3 +99,11 @@ wrap_rwilcox <- function(m, n) {
     .Call(`_rliger2_wrap_rwilcox`, m, n)
 }
 
+colAggregateSum_sparse <- function(X, groups, ngroups) {
+    .Call(`_rliger2_colAggregateSum_sparse`, X, groups, ngroups)
+}
+
+colNNZAggr_sparse <- function(X, groups, ngroups) {
+    .Call(`_rliger2_colNNZAggr_sparse`, X, groups, ngroups)
+}
+

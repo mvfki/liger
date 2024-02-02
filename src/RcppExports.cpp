@@ -284,6 +284,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// colAggregateSum_sparse
+arma::mat colAggregateSum_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
+RcppExport SEXP _rliger2_colAggregateSum_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
+    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
+    rcpp_result_gen = Rcpp::wrap(colAggregateSum_sparse(X, groups, ngroups));
+    return rcpp_result_gen;
+END_RCPP
+}
+// colNNZAggr_sparse
+arma::mat colNNZAggr_sparse(arma::sp_mat& X, const arma::uvec& groups, unsigned ngroups);
+RcppExport SEXP _rliger2_colNNZAggr_sparse(SEXP XSEXP, SEXP groupsSEXP, SEXP ngroupsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::sp_mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type groups(groupsSEXP);
+    Rcpp::traits::input_parameter< unsigned >::type ngroups(ngroupsSEXP);
+    rcpp_result_gen = Rcpp::wrap(colNNZAggr_sparse(X, groups, ngroups));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_rliger2_RunModularityClusteringCpp", (DL_FUNC) &_rliger2_RunModularityClusteringCpp, 9},
@@ -307,6 +333,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rliger2_wrap_pwilcox", (DL_FUNC) &_rliger2_wrap_pwilcox, 5},
     {"_rliger2_wrap_qwilcox", (DL_FUNC) &_rliger2_wrap_qwilcox, 5},
     {"_rliger2_wrap_rwilcox", (DL_FUNC) &_rliger2_wrap_rwilcox, 2},
+    {"_rliger2_colAggregateSum_sparse", (DL_FUNC) &_rliger2_colAggregateSum_sparse, 3},
+    {"_rliger2_colNNZAggr_sparse", (DL_FUNC) &_rliger2_colNNZAggr_sparse, 3},
     {NULL, NULL, 0}
 };
 
