@@ -457,7 +457,7 @@ runWilcoxon <- function(
                 cellIdx = allCellBC
             )[,1]
             mat@x <- mat@x / rep(libSize, diff(mat@p))
-            # mat <- log1p(1e10*mat)
+            mat <- log1p(1e4*mat)
             resultList[[i]] <- wilcoxauc(mat, var, verbose = verbose)
             if (nchunk > 1) gc()
             cli::cli_progress_update(set = i)
@@ -977,11 +977,11 @@ wilcoxauc <- function(x, clusterVar, verbose = verbose) {
     cs <- colSums(groupSums)
     gs <- as.numeric(table(clusterVar))
     lfc <- Reduce(cbind, lapply(seq_along(levels(clusterVar)), function(g) {
-        # groupMeans[, g] - (cs - groupSums[g, ])/(length(clusterVar) - gs[g])
-        log2(
-            (groupMeans[, g] + 1e-5) /
-                ((cs - groupSums[g, ])/(length(clusterVar) - gs[g]) + 1e-5)
-        )
+        groupMeans[, g] - (cs - groupSums[g, ])/(length(clusterVar) - gs[g])
+        # log2(
+        #     (groupMeans[, g] + 1e-5) /
+        #         ((cs - groupSums[g, ])/(length(clusterVar) - gs[g]) + 1e-5)
+        # )
     }))
 
     data.frame(
